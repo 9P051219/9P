@@ -20,12 +20,12 @@ async def on_ready():
 async def on_message(message):
     if message.author.bot:
         return None
-    if message.content == "PBOT출력":
+    if message.content == "9P출력":
         await message.channel.send("Python Bot에 의해 출력됨.") #바뀜
-    if message.content.startswith("PBOT1부터10"):
+    if message.content.startswith("9P1부터10"):
         for x in range(10):
             await message.channel.send(x+1) #바뀜
-    if message.content.startswith("PBOT계산"):
+    if message.content.startswith("9P계산"):
         global calcResult
         if message.content[7:].startswith("더하기"):
             calcResult = int(message.content[11:12])+int(message.content[13:14])

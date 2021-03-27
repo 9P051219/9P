@@ -4,7 +4,7 @@ import discord
 
 app = discord.Client()
 
-token = "your_token"
+token = "ODI1Mzk3NjkwMDk5MTcxMzgw.YF9VgA.MSFj5KwCaX8O7RzqgH0xnI4Kvxg"
 calcResult = 0
 
 @app.event

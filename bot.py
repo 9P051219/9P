@@ -1,21 +1,46 @@
+app.run(token)
+import asyncio
 import discord
-from discord.ext import commands
-import os
 
-client = commands.Bot(command_prefix = '-')
+app = discord.Client()
 
-@client.event
+token = "your_token"
+calcResult = 0
+
+@app.event
 async def on_ready():
+    print("다음으로 로그인합니다 : ")
+    print(app.user.name)
+    print(app.user.id)
+    print("==========")
+    game = discord.Game("파이썬 봇 실행중") #새로운 코드
+    await app.change_presence(status=discord.Status.online, activity=game) #바뀜
 
-  # [discord.Status.online = 온라인],[discord.Status.idle = 자리비움],[discord.Status.dnd = 다른용무],[discord.Status.offline = 오프라인]
-  await client.change_presence(status=discord.Status.online)
+@app.event
+async def on_message(message):
+    if message.author.bot:
+        return None
+    if message.content == "PBOT출력":
+        await message.channel.send("Python Bot에 의해 출력됨.") #바뀜
+    if message.content.startswith("PBOT1부터10"):
+        for x in range(10):
+            await message.channel.send(x+1) #바뀜
+    if message.content.startswith("PBOT계산"):
+        global calcResult
+        if message.content[7:].startswith("더하기"):
+            calcResult = int(message.content[11:12])+int(message.content[13:14])
+            await message.channel.send("Result : "+str(calcResult)) #바뀜
+        if message.content[7:].startswith("빼기"):
+            calcResult = int(message.content[10:11])-int(message.content[12:13])
+            await message.channel.send("Result : "+str(calcResult)) #바뀜
+        if message.content[7:].startswith("곱하기"):
+            calcResult = int(message.content[11:12])*int(message.content[13:14])
+            await message.channel.send("Result : "+str(calcResult)) #바뀜
+        if message.content[7:].startswith("나누기"):
+            try:
+                calcResult = int(message.content[11:12])/int(message.content[13:14])
+                await message.channel.send("Result : "+str(calcResult)) #바뀜
+            except ZeroDivisionError:
+                await message.channel.send("You can't divide with 0.") #바뀜
 
-  await client.change_presence(activity=discord.Game(name="게임 하는중"))
-  #await client.change_presence(activity=discord.Streaming(name="스트림 방송중", url='링크'))
-  #await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="노래 듣는중"))
-  #await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="영상 시청중"))
-
-  print("봇 이름:",client.user.name,"봇 아이디:",client.user.id,"봇 버전:",discord.version)
-
-
-client.run(os.environ['token'])
+app.run(token)

@@ -43,4 +43,8 @@ async def on_message(message):
             except ZeroDivisionError:
                 await message.channel.send("You can't divide with 0.") #바뀜
 
+<<<<<<< HEAD
 app.run(token)
+=======
+client.run(os.environ['ODI1Mzk3NjkwMDk5MTcxMzgw.YF9VgA.MSFj5KwCaX8O7RzqgH0xnI4Kvxg'])
+>>>>>>> 7ff88289ddf917facc5346ab66af777146f964a8

@@ -46,5 +46,5 @@ async def on_message(message):
 <<<<<<< HEAD
 app.run(token)
 =======
-client.run(os.environ['ODI1Mzk3NjkwMDk5MTcxMzgw.YF9VgA.MSFj5KwCaX8O7RzqgH0xnI4Kvxg'])
+client.run(os.environ['token'])
 >>>>>>> 7ff88289ddf917facc5346ab66af777146f964a8
